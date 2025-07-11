@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = import.meta.evn.VITE_BOARD_API_URL
+const BASE_URL = import.meta.env.VITE_BOARD_API_URL
 
 const boardApi = axios.create({
    baseURL: BASE_URL,
