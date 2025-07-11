@@ -7,11 +7,25 @@ require('dotenv').config() // 환경 변수 관리
 const cors = require('cors')
 
 // 라우터 및 기타 모듈 불러오기
+const indexRouter = require('./routes')
+const authRouter = require('./routes/auth')
+const boardRouter = require('./routes/board')
+const pageRouter = require('./routes/page')
+const memberRouter = require('./routes/member')
+const { sequelize } = require('./models')
 
 const app = express()
 app.set('port', process.env.PORT || 8002)
 
 // 시퀄라이즈를 사용한 DB연결
+sequelize
+   .sync({ force: false })
+   .then(() => {
+      console.log('데이터베이스 연결 성공')
+   })
+   .catch((err) => {
+      console.error(err)
+   })
 
 // 미들웨어 설정
 app.use(
@@ -40,6 +54,11 @@ app.use(
 )
 
 // 라우터 등록
+app.use('/', indexRouter)
+app.use('/auth', authRouter)
+app.use('/board', boardRouter)
+app.use('/page', pageRouter)
+app.use('/member', memberRouter)
 
 // 잘못된 라우터 경로 처리
 app.use((req, res, next) => {

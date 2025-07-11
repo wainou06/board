@@ -4,9 +4,18 @@ module.exports = class Board extends Sequelize.Model {
    static init(sequelize) {
       return super.init(
          {
-            title: {},
-            content: {},
-            img: {},
+            title: {
+               type: Sequelize.STRING(255),
+               allowNull: false,
+            },
+            content: {
+               type: Sequelize.TEXT,
+               allowNull: false,
+            },
+            img: {
+               type: Sequelize.STRING(255),
+               allowNull: true,
+            },
          },
          {
             sequelize,
@@ -20,5 +29,10 @@ module.exports = class Board extends Sequelize.Model {
          }
       )
    }
-   static associate(db) {}
+   static associate(db) {
+      db.Board.belongsTo(db.Member, {
+         foreignKey: 'member_id',
+         targetKey: 'id',
+      })
+   }
 }

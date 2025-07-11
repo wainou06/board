@@ -4,9 +4,19 @@ module.exports = class Member extends Sequelize.Model {
    static init(sequelize) {
       return super.init(
          {
-            email: {},
-            name: {},
-            password: {},
+            email: {
+               type: Sequelize.STRING(255),
+               allowNull: false,
+               unique: true,
+            },
+            name: {
+               type: Sequelize.STRING(255),
+               allowNull: false,
+            },
+            password: {
+               type: Sequelize.STRING(255),
+               allowNull: false,
+            },
          },
          {
             sequelize,
@@ -20,5 +30,10 @@ module.exports = class Member extends Sequelize.Model {
          }
       )
    }
-   static associate(db) {}
+   static associate(db) {
+      db.Member.hasMany(db.Board, {
+         foreignKey: 'member_id',
+         sourceKey: 'id',
+      })
+   }
 }
