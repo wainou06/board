@@ -60,3 +60,22 @@ export const checkAuthStatus = async () => {
       throw error
    }
 }
+
+// 게시판 등록
+export const createBoard = async (boardData) => {
+   try {
+      console.log('boardData: ', boardData)
+
+      const config = {
+         headers: {
+            'Content-Type': 'multipart/form-data',
+         },
+      }
+
+      const response = await boardApi.post('/board', boardData, config)
+      return response
+   } catch (error) {
+      console.error(`API Request 오류: ${error.message}`)
+      throw error
+   }
+}

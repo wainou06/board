@@ -8,16 +8,18 @@ import { Link } from 'react-router-dom'
 
 function Home({ isAuthenticated, member }) {
    return (
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
          {isAuthenticated ? (
             <>
-               <div style={{ border: '1px solid #03c75a' }}>
+               <div style={{ border: '1px solid #03c75a', borderRadius: '5px', float: 'left', padding: '10px' }}>
                   <Link to="/my" style={{ textDecoration: 'none' }}>
-                     <Typography variant="body1" style={{ color: 'black' }}>
-                        {member?.name}님
-                     </Typography>
+                     <AccountCircleIcon style={{ display: 'block', color: '#03c75a', width: '116', fontSize: '80' }} />
                   </Link>
-                  <Link to="/posts/create">
+                  <Typography variant="body1" style={{ color: 'black', textAlign: 'center' }}>
+                     {member?.name}님
+                  </Typography>
+                  <Link to="/boards/create" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none' }}>
+                     <p style={{ color: 'black' }}>글쓰기</p>
                      <IconButton aria-label="글쓰기">
                         <CreateIcon />
                      </IconButton>
@@ -36,18 +38,6 @@ function Home({ isAuthenticated, member }) {
                </div>
             </>
          )}
-
-         {/*   {loading && (
-            <Typography variant="body1" align="center">
-               로딩 중...
-            </Typography>
-         )} */}
-
-         {/*  {error && (
-            <Typography variant="body1" align="center" color="error">
-               에러 발생: {error}
-            </Typography>
-         )} */}
       </Container>
    )
 }

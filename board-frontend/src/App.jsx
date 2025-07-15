@@ -3,6 +3,7 @@ import Navbar from './components/shared/Navbar'
 import Home from './pages/Home'
 import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
+import BoardCreatePage from './pages/BoardCreatePage'
 
 import { Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Home isAuthenticated={isAuthenticated} member={member} />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/boards/create" element={<BoardCreatePage />} />
          </Routes>
       </>
    )

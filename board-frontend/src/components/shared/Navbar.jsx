@@ -2,8 +2,6 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import CreateIcon from '@mui/icons-material/Create'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -35,7 +33,7 @@ function Navbar({ isAuthenticated, member }) {
          <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                <Link to="/">
-                  <img src="/images/logo.png" alt="로고" width="160" style={{ display: 'inline-block', marginTop: '15px' }} />
+                  <img src="/images/logo.png" alt="로고" width="160" style={{ display: 'inline-block', margin: '15px 0 10px' }} />
                </Link>
             </Typography>
             {isAuthenticated ? (

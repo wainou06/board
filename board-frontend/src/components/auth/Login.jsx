@@ -68,8 +68,11 @@ function Login() {
             </Button>
          </form>
 
-         <p>
-            계정이 없으신가요? <Link to="/signup">회원가입</Link>
+         <p style={{ marginTop: '10px' }}>
+            계정이 없으신가요?{' '}
+            <Link to="/signup" style={{ color: '#03c75a' }}>
+               회원가입
+            </Link>
          </p>
       </Container>
    )
