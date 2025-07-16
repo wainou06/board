@@ -3,3 +3,61 @@ body {
    margin: 0;
    padding: 0;
 }
+
+a {
+   text-decoration: none;
+   color: black;
+}
+
+.main {
+   display: flex;
+   justify-content: space-between;
+}
+
+table {
+   width: 950px;
+   border-collapse: collapse;
+}
+
+th {
+   padding: 5px 0;
+   border-bottom: 1px solid;
+   border-right: 1px solid;
+}
+
+th:last-of-type {
+   border-right: none;
+}
+
+td {
+   display: flex;
+   padding: 5px 0;
+   border-bottom: 1px solid;
+   justify-content: center;
+   align-items: center;
+}
+
+.board_wrap {
+   margin: 0 auto;
+   border: 1px solid #03c75a;
+   border-radius: 5px;
+   max-width: 1200px;
+   text-align: center;
+}
+
+.board_title {
+   padding: 10px 0;
+   font-size: 20px;
+   border-bottom: 1px solid #03c75a;
+}
+
+.board_content {
+   padding: 20px 0;
+}
+
+.buttons {
+   display: flex;
+   margin: 10px auto;
+   max-width: 1200px;
+   justify-content: flex-end;
+}

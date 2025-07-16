@@ -9,6 +9,8 @@ import { Route, Routes } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { checkAuthStatusThunk } from './features/authSlice'
+import BoardEditPage from './pages/BoardEditPage'
+import BoardDetail from './pages/BoardDetail'
 
 function App() {
    const dispatch = useDispatch()
@@ -26,6 +28,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/boards/create" element={<BoardCreatePage />} />
+            <Route path="/boards/edit/:id" element={<BoardEditPage />} />
+            <Route path="/detail/:id" element={<BoardDetail isAuthenticated={isAuthenticated} member={member} />} />
          </Routes>
       </>
    )

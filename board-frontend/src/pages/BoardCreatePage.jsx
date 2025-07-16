@@ -16,7 +16,7 @@ function BoardCreatePage() {
          })
          .catch((error) => {
             console.error('게시물 등록 에러: ', error)
-            alert('게시물 등록에 실패했습니다.', error)
+            alert('게시물 등록에 실패했습니다.'+ error)
          })
    }
 
