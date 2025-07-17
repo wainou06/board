@@ -15,9 +15,18 @@ function Home({ isAuthenticated, member }) {
    const dispatch = useDispatch()
    const { boards, pagination, loading, error } = useSelector((state) => state.boards)
 
+   // 게시글 목록 불러오기
    useEffect(() => {
       dispatch(fetchBoardsThunk(page))
    }, [dispatch, page])
+
+   // 페이지 수가 줄어든 경우 페이지 조정
+   useEffect(() => {
+      if (pagination && pagination.totalPages >= 0 && page > pagination.totalPages) {
+         setPage(pagination.totalPages)
+      }
+   }, [pagination, page])
+
 
    const handlePageChange = (event, value) => {
       setPage(value)
@@ -44,8 +53,8 @@ function Home({ isAuthenticated, member }) {
             </>
          ) : (
             <>
-               <div style={{ border: '1px solid #03c75a', borderRadius: '5px', padding: '10px', height: '150px', display:'flex', flexDirection:'column', justifyContent: 'center' }}>
-                  <AccountCircleIcon style={{ display: 'block', color: 'gray', width: '116', fontSize: '80', marginBottom:'15px' }} />
+               <div style={{ border: '1px solid #03c75a', borderRadius: '5px', padding: '10px', height: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <AccountCircleIcon style={{ display: 'block', color: 'gray', width: '116', fontSize: '80', marginBottom: '15px' }} />
                   <Link to="/login" style={{ textDecoration: 'none' }}>
                      <Button variant="contained" color="success">
                         로그인하세요.
@@ -68,7 +77,7 @@ function Home({ isAuthenticated, member }) {
          )}
 
          {boards.length > 0 ? (
-            <div style={{marginLeft:'20px'}}>
+            <div style={{ marginLeft: '20px' }}>
                <table>
                   <thead>
                      <tr style={{ display: 'flex' }}>
@@ -81,7 +90,7 @@ function Home({ isAuthenticated, member }) {
                   </thead>
                   <tbody>
                      {boards.map((board) => (
-                        <BoardItem key={board.id} board={board} isAuthenticated={isAuthenticated} member={member} />
+                        <BoardItem key={board.id} board={board} isAuthenticated={isAuthenticated} member={member} currentPage={page} />
                      ))}
                   </tbody>
                </table>

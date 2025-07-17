@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { createBoard, getBoardById, getBoards, updateBoard } from '../api/boardApi'
+import { createBoard, getBoardById, getBoards, updateBoard, deleteBoard } from '../api/boardApi'
 
 // 게시물 등록
 export const createBoardThunk = createAsyncThunk('boards/createBoard', async (boardData, { rejectWithValue }) => {
@@ -29,6 +29,15 @@ export const updateBoardThunk = createAsyncThunk('boards/updateBoard', async (da
 })
 
 // 게시물 삭제
+export const deleteBoardThunk = createAsyncThunk('boards/deleteBoard', async (id, { rejectWithValue }) => {
+   try {
+      const response = await deleteBoard(id)
+
+      return response.data
+   } catch (error) {
+      return rejectWithValue(error.response?.data?.message)
+   }
+})
 
 // 특정 게시물 가져오기
 export const fetchBoardByIdThunk = createAsyncThunk('boards/fetchBoardById', async (id, { rejectWithValue }) => {

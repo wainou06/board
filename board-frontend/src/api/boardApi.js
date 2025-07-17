@@ -80,7 +80,7 @@ export const createBoard = async (boardData) => {
    }
 }
 
-// 전체 포스트 가져오기(페이징)
+// 전체 보드 가져오기(페이징)
 export const getBoards = async (page) => {
    try {
       const response = await boardApi.get(`/board?page=${page}`)
@@ -91,7 +91,7 @@ export const getBoards = async (page) => {
    }
 }
 
-// 특정 포스트 가져오기
+// 특정 보드 가져오기
 export const getBoardById = async (id) => {
    try {
       const response = await boardApi.get(`/board/${id}`)
@@ -102,7 +102,7 @@ export const getBoardById = async (id) => {
    }
 }
 
-// 포스트 수정
+// 보드 수정
 export const updateBoard = async (id, boardData) => {
    try {
       const config = {
@@ -112,6 +112,17 @@ export const updateBoard = async (id, boardData) => {
       }
 
       const response = await boardApi.put(`/board/${id}`, boardData, config)
+      return response
+   } catch (error) {
+      console.error(`API Request 오류: ${error.message}`)
+      throw error
+   }
+}
+
+// 보드 삭제
+export const deleteBoard = async (id) => {
+   try {
+      const response = await boardApi.delete(`/board/${id}`)
       return response
    } catch (error) {
       console.error(`API Request 오류: ${error.message}`)

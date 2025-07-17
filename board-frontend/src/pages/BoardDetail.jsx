@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchBoardByIdThunk } from '../features/boardSlice'
+import { fetchBoardByIdThunk, deleteBoardThunk, fetchBoardsThunk } from '../features/boardSlice'
 import { Link } from 'react-router-dom'
 
 import { Box, IconButton, Container, Typography } from '@mui/material'
@@ -23,6 +23,23 @@ function BoardDetail({ isAuthenticated, member }) {
    // 목록 버튼 누를 시 '/'로 이동
    const onClick = () => {
       navigate('/')
+   }
+
+   // 게시물 삭제
+   const onClickDelete = (id) => {
+      const result = confirm('정말 삭제하시겠습니까?')
+      if (result) {
+         dispatch(deleteBoardThunk(id))
+            .unwrap()
+            .then(() => {
+               dispatch(fetchBoardsThunk())
+               navigate('/')
+            })
+            .catch((error) => {
+               console.error('게시물 삭제 중 오류 발생: ', error)
+               alert('게시물 삭제에 실패했습니다.' + error)
+            })
+      }
    }
 
    if (loading) return <p>로딩 중...</p>
@@ -80,7 +97,7 @@ function BoardDetail({ isAuthenticated, member }) {
                                  <EditIcon fontSize="small" />
                               </IconButton>
                            </Link>
-                           <IconButton aria-label="delete" size="small">
+                           <IconButton aria-label="delete" size="small" onClick={() => onClickDelete(board.id)}>
                               <DeleteIcon fontSize="small" />
                            </IconButton>
                         </Box>
