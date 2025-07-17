@@ -27,7 +27,6 @@ function Home({ isAuthenticated, member }) {
       }
    }, [pagination, page])
 
-
    const handlePageChange = (event, value) => {
       setPage(value)
    }
