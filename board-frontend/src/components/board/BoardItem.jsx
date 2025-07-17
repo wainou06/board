@@ -17,7 +17,9 @@ function BoardItem({ board, isAuthenticated, member }) {
             <Link to={`/detail/${board.id}`}>{board.title}</Link>
          </td>
          <td style={{ flex: '20%' }}>
-            <img src={`${import.meta.env.VITE_BOARD_API_URL}${board.img}`} alt={board.title} style={{ width: 120, height: 120, borderRadius: 15 }} />
+            <Link to={`/detail/${board.id}`}>
+               <img src={`${import.meta.env.VITE_BOARD_API_URL}${board.img}`} alt={board.title} style={{ width: 120, height: 120, borderRadius: 15 }} />
+            </Link>
          </td>
          <td style={{ flex: '20%' }}>{dayjs(board.createAt).format('YY/MM/DD HH:mm')}</td>
          <td style={{ flex: '20%' }}>

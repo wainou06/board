@@ -21,7 +21,7 @@ function BoardEditPage() {
       dispatch(updateBoardThunk({ id, boardData }))
          .unwrap()
          .then(() => {
-            navigate('/')
+            navigate(`/detail/${board.id}`)
          })
          .catch((error) => {
             console.error('게시물 수정 중 오류 발생: ', error)

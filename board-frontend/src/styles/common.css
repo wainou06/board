@@ -37,11 +37,20 @@ td {
    align-items: center;
 }
 
+.detail {
+   display: flex;
+   justify-content: space-between;
+}
+
+.board_table {
+   margin-left: 15px;
+   width: 980px;
+}
+
 .board_wrap {
    margin: 0 auto;
    border: 1px solid #03c75a;
    border-radius: 5px;
-   max-width: 1200px;
    text-align: center;
 }
 
